@@ -28,7 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body class="wide">
-    <header>
+    <header class="desktop">
       <div class="nav-left">
         <a href="../../" title="Home"><img class="logo" src="../../images/hypercore-protocol.png"></a>
         <a class="current" href="../../guides" title="Guides">Guides</a>
@@ -42,6 +42,17 @@
         <a href="https://github.com/hypercore-protocol" title="Hypercore GitHub Org"><img class="icon" src="../../images/github-icon.png"></a>
       </div>
     </header>
+    <header class="mobile">
+      <a href="../../" title="Home"><img class="logo" src="../../images/hypercore-protocol.png"></a>
+      <a id="mobile-menu-btn" href="#" title="Nav"><img class="menu" src="../../images/icons8/menu-26.png"></a>
+    </header>
+    <div id="mobile-menu">
+      <a class="current" href="../../" title="Home">Home</a>
+      <a class="current" href="../../guides" title="Guides">Guides</a>
+      <a class="" href="../../protocol" title="Protocol">Protocol</a>
+      <a class="" href="../../install" title="Install">Install</a>
+      <a class="" href="../../awesome-hacks" title="Awesome Hacks">Awesome Hacks</a>
+    </div>
 
     
 
@@ -345,6 +356,7 @@ Hypercores can be <b>shared</b> using their <code>replicate</code> method, which
         </div>
       </div>
     </footer>
+    <script src="../../js/mobile-nav.js"></script>
     <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""></noscript>
   </body>
