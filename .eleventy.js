@@ -10,4 +10,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy('videos')
   eleventyConfig.addPassthroughCopy('fonts')
   eleventyConfig.addPassthroughCopy('js')
+
+  // deep merge computed properties
+  eleventyConfig.setDataDeepMerge(true)
 }

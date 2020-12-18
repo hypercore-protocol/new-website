@@ -5,23 +5,64 @@ wideLayout: true
 ---
 
 <%
-function renderWalkthroughHeader () {
-  return `<h2>Header here</h2>`
+function renderNotInteractive () {
+  return `
+    <div class="interactivity noninteractive">
+      <h3>Not Interactive</h3>
+      <p>
+        This walkthrough is not interactive.
+      </p>
+    </div>
+  `
 }
 
-function renderWalkthroughFooter () {
-  return `<h2>Footer here</h2>`
+function renderNotConnected () {
+  return `
+    <div class="connectivity disconnected">
+      <h3>Not Connected</h3>
+      <p>
+        You are not connected to a local Hyperspace daemon. This walkthrough will be not interactive.
+      </p>
+    </div>
+  `
+}
+
+function renderConnected () {
+  return `
+    <div class="connectivity connected">
+      <h3>Connected</h3>
+      <p>
+        You are connected to a local Hyperspace daemon. This walkthrough will be interactive.
+      </p>
+    </div>
+  `
+}
+
+function renderPrevWalkthroughs () {
+  return ``
+}
+
+function renderNextWalkthroughs () {
+  return ``
+}
+
+async function renderInteractivityHeader () {
+  if (!interactive) return renderNotInteractive()
+  if (!(await connected)) return renderNotConnected()
+  return renderConnected()
 }
 %>
 
 <main>
   <div class="walkthrough-header">
-    <%- renderWalkthroughHeader() %>
+    <h1><%= title %></h1>
+    <%- renderInteractivityHeader() %>
+    <%- renderPrevWalkthroughs() %>
   </div>
   <div class="walkthrough-content">
     <%- content %>
   </div>
   <div class="walkthrough-footer">
-    <%- renderWalkthroughFooter() %>
+    <%- renderNextWalkthroughs() %>
   </div>
 </main>
