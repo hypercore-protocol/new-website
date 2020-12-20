@@ -1,0 +1,266 @@
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Creating and Sharing Hypercores</title>
+
+    <!-- SEO -->
+    <meta name="Description" content="A fast, scalable, and secure peer-to-peer protocol for everyone.">
+    <meta name="keywords" content="decentralization,hypercore,peer-to-peer,p2p,hyperdrive">
+
+    <!-- Social -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@HypercoreProto">
+    <meta name="twitter:creator" content="@HypercoreProto">
+    <meta name="og:title" content="Creating and Sharing Hypercores">
+    <meta name="og:description" content="A fast, scalable, and secure peer-to-peer protocol for everyone.">
+    <meta name="twitter:image" content="https://hypercore-protocol.org/images/hypercore-protocol.png">
+
+    
+      
+        <link rel="stylesheet" type="text/css" href="../../../../css/layouts/walkthroughs.css">
+      
+    
+    <link rel="stylesheet" type="text/css" href="../../../../fonts/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body class="wide">
+    <header class="desktop">
+      <div class="nav-left">
+        <a href="../../../../" title="Home"><img class="logo" src="../../../../images/hypercore-protocol.png"></a>
+        <a class="current" href="../../../../guides" title="Guides">Guides</a>
+        <a class="" href="../../../../protocol" title="Protocol">Protocol</a>
+        <a class="" href="../../../../install" title="Install">Install</a>
+        <a class="" href="../../../../awesome-hacks" title="Awesome Hacks">Awesome Hacks</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://chat.hypercore-protocol.org" title="Hypercore Discord Server"><img class="icon" src="../../../../images/discord-icon.webp"></a>
+        <a href="https://twitter.com/hypercoreproto" title="Hypercore Twitter"><img class="icon" src="../../../../images/twitter-icon.png"></a>
+        <a href="https://github.com/hypercore-protocol" title="Hypercore GitHub Org"><img class="icon" src="../../../../images/github-icon.png"></a>
+      </div>
+    </header>
+    <header class="mobile">
+      <a href="../../../../" title="Home"><img class="logo" src="../../../../images/hypercore-protocol.png"></a>
+      <a id="mobile-menu-btn" href="#" title="Nav"><img class="menu" src="../../../../images/icons8/menu-26.png"></a>
+    </header>
+    <div id="mobile-menu">
+      <a class="current" href="../../../../" title="Home">Home</a>
+      <a class="current" href="../../../../guides" title="Guides">Guides</a>
+      <a class="" href="../../../../protocol" title="Protocol">Protocol</a>
+      <a class="" href="../../../../install" title="Install">Install</a>
+      <a class="" href="../../../../awesome-hacks" title="Awesome Hacks">Awesome Hacks</a>
+    </div>
+
+    
+
+
+<main>
+  <div class="guides-breadcrumbs">
+    
+    <a href="../../../../guides/" title="Guides">Guides</a>
+  <span>&rsaquo;</span>
+    <a href="../../../../guides/dev/" title="Developers">Developers</a>
+  <span>&rsaquo;</span>
+    <a href="../../../../guides/dev/walkthroughs/" title="Walkthroughs">Walkthroughs</a>
+  
+  </div>
+  <div class="guides-layout">
+    <nav>
+      
+    <ul>
+      
+    <li>
+      <a class="" href="../../../../guides/" title="Introduction">Introduction</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../../guides/faq/" title="FAQ">FAQ</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../../guides/hyp/" title="Using the Hyp CLI">Using the Hyp CLI</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="child-current" href="../../../../guides/dev/" title="Developers">Developers</a>
+      
+    <ul>
+      
+    <li>
+      <a class="" href="../../../../guides/dev/apis/" title="APIs">APIs</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="child-current" href="../../../../guides/dev/walkthroughs/" title="Walkthroughs">Walkthroughs</a>
+      
+    <ul>
+      
+    <li>
+      <a class="" href="../../../../guides/dev/walkthroughs/hypercore" title="Hypercore">Hypercore</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../../guides/dev/walkthroughs/hyperswarm" title="Hyperswarm">Hyperswarm</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../../guides/dev/walkthroughs/corestore" title="Corestore">Corestore</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../../guides/dev/walkthroughs/hyperspace" title="Hyperspace">Hyperspace</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../../guides/dev/walkthroughs/hyperdrive" title="Hyperdrive">Hyperdrive</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../../guides/dev/walkthroughs/hyperbee" title="Hyperbee">Hyperbee</a>
+      
+    </li>
+  
+    </ul>
+  
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../../guides/dev/workshops/" title="Workshops">Workshops</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../../guides/dev/modules/" title="Our Modules">Our Modules</a>
+      
+    </li>
+  
+    </ul>
+  
+    </li>
+  
+
+    <li>
+      <a class=" external" href="../../../../protocol/" title="Protocol Overview">Protocol Overview</a>
+      
+    </li>
+  
+    </ul>
+  
+    </nav>
+    <div class="guide-content">
+      
+
+
+<main>
+  <div class="walkthrough-header">
+    
+    <h1>Creating and Sharing Hypercores</h1>
+    <h4><a href="https://github.com/andrewosh/hypercore-protocol-walkthroughs/tree/main/hypercore">A complete example</a></h4>
+  
+  </div>
+  <div class="walkthrough-content">
+    
+<p>
+  Hypercore is the bread-and-butter of the Hypercore Protocol. It's a lightweight, secure append-only log that can be replicated over any Node.js stream.
+</p>
+
+<h2>Installation</h2>
+
+<p>
+  For this walkthrough, we'll install two modules:
+  <ol>
+    <li><code>hypercore</code>: Our primary module</li>
+    <li><code>hypercore-promisifier</code>: A Promises interface for Hypercore</li>
+</p>
+
+<section class="code-example">
+    <div class="columns">
+        <div class="description">
+            <p>
+                Using "topic" keys, devices discover each other and arrange a connection through a DHT hole-punching protocol.
+            </p>
+        </div>
+    <div class="code"><span class="comment">// look for peers listed under this topic</span>
+<span class="keyword">const</span> topic = sha256(<span class="string">'my-hyperswarm-topic'</span>)
+    swarm.join(topic, {lookup: <span class="literal">true</span>, announce: <span class="literal">true</span>})
+
+    swarm.on(<span class="string">'connection'</span>, (socket, details) => {
+    console.log(<span class="string">'new connection!'</span>, details)
+
+    <span class="comment">// you can now use the socket as a stream, eg:</span>
+    process.stdin.pipe(socket).pipe(process.stdout)
+})
+    </div>
+    </div>
+</section>
+
+  </div>
+  <div class="walkthrough-footer">
+    <h2>Footer here</h2>
+  </div>
+</main>
+
+    </div>
+  </div>
+</main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-linklists">
+          <div>
+            <h5>Site</h5>
+            <div><a href="../../../../" title="Home">Home</a></div>
+            <div><a href="../../../../guides/" title="Guides">Guides</a></div>
+            <div><a href="../../../../protocol/" title="Protocol">Protocol</a></div>
+            <div><a href="../../../../install/" title="Install">Install</a></div>
+          </div>
+          <div>
+            <h5>Repos</h5>
+            <div><a href="https://github.com/hypercore-protocol/hyperspace" title="Hyperspace">Hyperspace</a></div>
+            <div><a href="https://github.com/hypercore-protocol/cli" title="Hyp CLI">Hyp CLI</a></div>
+            <div><a href="https://github.com/hypercore-protocol/hypercore" title="Hypercore">Hypercore</a></div>
+            <div><a href="https://github.com/hypercore-protocol/hyperdrive" title="Hyperdrive">Hyperdrive</a></div>
+            <div><a href="https://github.com/mafintosh/hyperbee" title="Hyperbee">Hyperbee</a></div>
+            <div><a href="https://github.com/hyperswarm/" title="Hyperswarm">Hyperswarm</a></div>
+          </div>
+          <div>
+            <h5>Links</h5>
+            <div><a href="https://blog.hypercore-protocol.org" title="Blog">Blog</a></div>
+            <div><a href="https://github.com/hypercore-protocol" title="GitHub">GitHub</a></div>
+            <div><a href="https://twitter.com/hypercoreproto" title="Twitter">Twitter</a></div>
+            <div><a href="https://chat.hypercore-protocol.org" title="Discord Chat">Discord Chat</a></div>
+          </div>
+        </div>
+        <div class="copyrights">
+          Icons by <a href="https://icons8.com" title="Icons8">Icons8</a>
+        </div>
+      </div>
+    </footer>
+    <script src="../../../../js/mobile-nav.js"></script>
+    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""></noscript>
+  </body>
+</html>
