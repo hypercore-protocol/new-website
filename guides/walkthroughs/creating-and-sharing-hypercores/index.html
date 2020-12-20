@@ -1,0 +1,286 @@
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Creating and Sharing Hypercores</title>
+
+    <!-- SEO -->
+    <meta name="Description" content="A fast, scalable, and secure peer-to-peer protocol for everyone.">
+    <meta name="keywords" content="decentralization,hypercore,peer-to-peer,p2p,hyperdrive">
+
+    <!-- Social -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@HypercoreProto">
+    <meta name="twitter:creator" content="@HypercoreProto">
+    <meta name="og:title" content="Creating and Sharing Hypercores">
+    <meta name="og:description" content="A fast, scalable, and secure peer-to-peer protocol for everyone.">
+    <meta name="twitter:image" content="https://hypercore-protocol.org/images/hypercore-protocol.png">
+
+    
+      
+        <link rel="stylesheet" type="text/css" href="../../../css/layouts/walkthroughs.css">
+      
+    
+    <link rel="stylesheet" type="text/css" href="../../../fonts/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body class="wide">
+    <header class="desktop">
+      <div class="nav-left">
+        <a href="../../../" title="Home"><img class="logo" src="../../../images/hypercore-protocol.png"></a>
+        <a class="current" href="../../../guides" title="Guides">Guides</a>
+        <a class="" href="../../../protocol" title="Protocol">Protocol</a>
+        <a class="" href="../../../install" title="Install">Install</a>
+        <a class="" href="../../../awesome-hacks" title="Awesome Hacks">Awesome Hacks</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://chat.hypercore-protocol.org" title="Hypercore Discord Server"><img class="icon" src="../../../images/discord-icon.webp"></a>
+        <a href="https://twitter.com/hypercoreproto" title="Hypercore Twitter"><img class="icon" src="../../../images/twitter-icon.png"></a>
+        <a href="https://github.com/hypercore-protocol" title="Hypercore GitHub Org"><img class="icon" src="../../../images/github-icon.png"></a>
+      </div>
+    </header>
+    <header class="mobile">
+      <a href="../../../" title="Home"><img class="logo" src="../../../images/hypercore-protocol.png"></a>
+      <a id="mobile-menu-btn" href="#" title="Nav"><img class="menu" src="../../../images/icons8/menu-26.png"></a>
+    </header>
+    <div id="mobile-menu">
+      <a class="current" href="../../../" title="Home">Home</a>
+      <a class="current" href="../../../guides" title="Guides">Guides</a>
+      <a class="" href="../../../protocol" title="Protocol">Protocol</a>
+      <a class="" href="../../../install" title="Install">Install</a>
+      <a class="" href="../../../awesome-hacks" title="Awesome Hacks">Awesome Hacks</a>
+    </div>
+
+    
+
+
+<main>
+  <div class="guides-breadcrumbs">
+    
+    <a href="../../../guides/" title="Guides">Guides</a>
+  <span>&rsaquo;</span>
+    <a href="../../../guides/walkthroughs/" title="Walkthroughs">Walkthroughs</a>
+  <span>&rsaquo;</span>
+    <a href="../../../guides/walkthroughs/creating-and-sharing-hypercores/" title="Hypercore">Hypercore</a>
+  
+  </div>
+  <div class="guides-layout">
+    <nav>
+      
+    <ul>
+      
+    <li>
+      <a class="" href="../../../guides/getting-started/" title="Getting Started">Getting Started</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../guides/hyp/" title="Hyp CLI">Hyp CLI</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../guides/hyperspace/" title="Hyperspace API">Hyperspace API</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../guides/modules/" title="Modules">Modules</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="child-current" href="../../../guides/walkthroughs/" title="Walkthroughs">Walkthroughs</a>
+      
+    <ul>
+      
+    <li>
+      <a class="current" href="../../../guides/walkthroughs/creating-and-sharing-hypercores/" title="Hypercore">Hypercore</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../guides/walkthroughs/p2p-networking-with-hyperswarm/" title="Hyperswarm">Hyperswarm</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../guides/walkthroughs/sharing-files-with-hyperdrive/" title="Hyperdrive">Hyperdrive</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../guides/walkthroughs/p2p-indexing-with-hyperbee/" title="Hyperbee">Hyperbee</a>
+      
+    </li>
+  
+    </ul>
+  
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../guides/workshops/" title="Workshops">Workshops</a>
+      
+    </li>
+  
+
+    <li>
+      <a class="" href="../../../guides/faq/" title="FAQ">FAQ</a>
+      
+    </li>
+  
+    </ul>
+  
+    </nav>
+    <div class="guide-content">
+      
+
+
+<main>
+  <div class="walkthrough-header">
+    
+    <h1>Creating and Sharing Hypercores</h1>
+    <h4><a href="https://github.com/andrewosh/hypercore-protocol-walkthroughs/tree/main/hypercore">A complete example</a></h4>
+  
+  </div>
+  <div class="walkthrough-content">
+    <h1>Creating and Replicating Hypercores</h1>
+<p>This walkthrough will go through the basics of using Hypercore as a standalone module.</p>
+<p>Hypercore gives you many knobs to tweak, so if you'd like something with more &quot;batteries included&quot;, head on over to the <a href="/hyperspace">Hyperspace Walkthrough</a>.</p>
+<h3>Introduction</h3>
+<p>Hypercore is the bread-and-butter of the Hypercore Protocol. It is a lightweight, secure append-only log with several powerful properties:</p>
+<ol>
+<li><strong>Secure</strong>: Hypercore builds a Merkle tree out of its blocks, so readers can always verify that the log hasn't been tampered with.</li>
+<li><strong>Easy Replication</strong>: The <code>replicate</code> method returns a Duplex stream that can be piped over an arbitrary transport stream.</li>
+<li><strong>On-Demand Downloading</strong>: With &quot;sparse mode&quot;, readers will download blocks from peers when they are first requested.</li>
+<li><strong>Caching</strong>: Once peer has downloaded a block, it will be cached locally. The download will only happen once.</li>
+<li><strong>Bandwidth Sharing</strong>: As with BitTorrent, readers download blocks from many connected peers in parallel.</li>
+<li><strong>Live Updating</strong>: Peers can be notified whenever a Hypercore has grown.</li>
+</ol>
+<p>A Hypercore can only have a <strong>single writer, on a single machine</strong> -- the creator of the Hypercore is the only person who can modify to it, because they're the only one with the private key. That said, the writer can replicate to <strong>many readers</strong>, in a manner similar to BitTorrent.</p>
+<p>Unlike with BitTorrent, a Hypercore can be modified after its initial creation, and peers can receive live notifications whenever the writer adds new blocks.</p>
+<p>In this walkthrough, we'll create two Hypercores: one writable and one that's a read-only clone of the first, which will simulate a remote peer. We'll then show you how to initiate replication between the two cores, and have the reader download and display live updates.</p>
+<h3>Trying it out</h3>
+<p>This example only has two dependencies: <code>hypercore</code> and <code>hypercore-promisifier</code>, which gives you a Promises interface for Hypercore.</p>
+<p>Each step builds on the previous, and you can run them all from the command line with <code>node step-N.js</code>.</p>
+<h3><a href="/hypercore/step-1.js">Step 1</a>: Create a Writable Hypercore</h3>
+<p>The Hypercore constructor has two main parameters, <code>storage</code> and <code>key</code>, as well as a handful of options, several of which we'll work with in the next steps.</p>
+<p>Let's create a new core with UTF-8 encoded blocks, stored in the <code>./main</code> directory:</p>
+<pre><code class="language-js">const core = toPromises(hypercore('./main', {
+  valueEncoding: 'utf-8' // The blocks will be UTF-8 strings.
+}))
+</code></pre>
+<p>Hypercore currently only has a callback API, so we use the <code>hypercore-promisifier</code> module to wrap it in a Promises API. This keeps things more concise.</p>
+<p>We can append two new blocks to our core using the <code>append</code> method, which accepts either a single block or an Array of blocks:</p>
+<pre><code class="language-js">await core.append(['hello', 'world'])
+</code></pre>
+<p>Now that our main core has two blocks in it, let's create a clone and start replicating.</p>
+<h4>The Storage Parameter</h4>
+<p>Cores can be stored in any instance of <a href="https://github.com/random-access-storage"><code>random-access-storage</code></a>. Inside the random-access-storage GitHub repo, you'll storage modules for disk, memory-only, S3, IndexedDB, and more.</p>
+<p>If you pass in a String, Hypercore will use on-disk storage by default, and will treat the argument as the storage directory.</p>
+<h4>Hypercore Keys</h4>
+<p>All Hypercores are identified by two properties: A <strong>public key</strong> and a <strong>discovery key</strong>, the latter of which is derived from the public key. Importantly, the public key gives peer <strong>read capability</strong> -- if you have the key, you can exchange blocks with other peers.</p>
+<p>Without the key, a peer is unable to validate blocks, and the Hypercore transport protocol will block replication.</p>
+<p>Since the public key is also a read capability, it can't be used to discover other readers (by advertising it on a DHT, for example), as that would lead to capability leaks. The discovery key, being derived from the public key but lacking read capability, can be shared openly for peer discovery.</p>
+<h3><a href="/hypercore/step-2.js">Step 2</a>: Create a Read-Only Clone</h3>
+<p>Let's simulate a remote peer by creating a read-only clone of the Hypercore from the previous step.</p>
+<pre><code class="language-js">const clone = toPromises(hypercore('./clone', core.key, {
+  valueEncoding: 'utf-8',
+  sparse: true, // When replicating, don't eagerly download all blocks.
+}))
+</code></pre>
+<p>Since this clone is going to be downloading data from the original core, we've specified a few additional options, <code>sparse</code> and <code>eagerUpdate</code>, described below.</p>
+<p>The <code>replicate</code> method can be used to create a Duplex stream that implements the <a href="https://github.com/hypercore-protocol/hypercore-protocol">Hypercore Protocol</a>. We can pipe together two replication streams, one from the original core and one from the clone, in order to start exchanging blocks:</p>
+<pre><code class="language-js">const firstStream = core.replicate(true, { live: true })
+const cloneStream = clone.replicate(false, { live: true })
+
+// Pipe the stream together to begin replicating.
+firstStream.pipe(cloneStream).pipe(firstStream)
+</code></pre>
+<p>These replication streams are end-to-end encrypted using the <a href="https://noiseprotocol.org/">NOISE protocol</a>. The first argument (<code>true</code> or <code>false</code>) indicates which peer initiated the replication process.</p>
+<p>In this example, we're directly piping the two replication streams together, but in real-world scenarios you'll typically pipe into network streams (such as TCP or UTP peer connections), which we'll explore in the Hyperswarm walkthrough.</p>
+<p>Both replication streams are &quot;live&quot;, meaning they'll continue replicating indefinitely.</p>
+<p>Now that the clone has a connected peer, we can start requesting blocks. These blocks will be lazily downloaded, because the clone was constructed in sparse mode:</p>
+<pre><code class="language-js">console.log('First clone block:', await clone.get(0)) // 'hello'
+console.log('Second clone block:', await clone.get(1)) // 'world'
+</code></pre>
+<p>Let's append 100 more blocks, then request the last block from the clone. When this is done, the clone will have blocks 0, 1, and 101 available locally.</p>
+<pre><code class="language-js">for (let i = 0; i &lt; 100; i++) {
+  await core.append(`New Block ${i}`)
+}
+await clone.update()
+await clone.get(clone.length - 1) // New Block 99
+</code></pre>
+<h4>Sparse Downloading</h4>
+<p>Readers do not need to download complete Hypercores in order to read individual blocks. A Hypercore might be massive (containing a huge database, say), but often readers will only be interested in a small subset of its blocks. This is especially true when working with data structures built on top of Hypercore.</p>
+<p>The <code>sparse</code> flag turns on &quot;sparse mode&quot;, which instructs a Hypercore to disable block downloading unless a block is explicitly requested (through <code>get</code> or <code>createReadStream</code>). If <code>sparse</code> is false, then Hypercore will automatically download as many blocks as possibly from every peer it connects to.</p>
+<h4>Updating</h4>
+<p>When in sparse mode, you'll often want certain properties, like the core's length, to stay as up-to-date as possible. The <code>update</code> method will fetch small proofs from connected peers in order to update the core's metadata to a more recent version.</p>
+<h3>Next Steps</h3>
+<p>In the <a href="/hyperswarm">Hyperswarm Walkthrough</a>, we'll see how to replicate Hypercores to remote peers over a P2P network.</p>
+
+  </div>
+  <div class="walkthrough-footer">
+    <h2>Footer here</h2>
+  </div>
+</main>
+
+    </div>
+  </div>
+</main>
+
+    <footer>
+      <div class="patreon-cta">
+        <div class="patreon-cta-inner">
+          <img src="../../../images/icons8/heart-24-inverted.png">
+          Hypercore Protocol is open-source!
+          <a href="https://www.patreon.com/paul_maf_and_andrew" title="Patreon" target="_blank">Support us on Patreon</a>.
+        </div>
+      </div>
+      <div class="footer-inner">
+        <div class="footer-linklists">
+          <div>
+            <h5>Site</h5>
+            <div><a href="../../../" title="Home">Home</a></div>
+            <div><a href="../../../guides/" title="Guides">Guides</a></div>
+            <div><a href="../../../protocol/" title="Protocol">Protocol</a></div>
+            <div><a href="../../../install/" title="Install">Install</a></div>
+          </div>
+          <div>
+            <h5>Repos</h5>
+            <div><a href="https://github.com/hypercore-protocol/hyperspace" title="Hyperspace">Hyperspace</a></div>
+            <div><a href="https://github.com/hypercore-protocol/cli" title="Hyp CLI">Hyp CLI</a></div>
+            <div><a href="https://github.com/hypercore-protocol/hypercore" title="Hypercore">Hypercore</a></div>
+            <div><a href="https://github.com/hypercore-protocol/hyperdrive" title="Hyperdrive">Hyperdrive</a></div>
+            <div><a href="https://github.com/mafintosh/hyperbee" title="Hyperbee">Hyperbee</a></div>
+            <div><a href="https://github.com/hyperswarm/" title="Hyperswarm">Hyperswarm</a></div>
+          </div>
+          <div>
+            <h5>Links</h5>
+            <div><a href="https://blog.hypercore-protocol.org" title="Blog">Blog</a></div>
+            <div><a href="https://github.com/hypercore-protocol" title="GitHub">GitHub</a></div>
+            <div><a href="https://twitter.com/hypercoreproto" title="Twitter">Twitter</a></div>
+            <div><a href="https://chat.hypercore-protocol.org" title="Discord Chat">Discord Chat</a></div>
+          </div>
+        </div>
+        <div class="copyrights">
+          Icons by <a href="https://icons8.com" title="Icons8">Icons8</a>
+        </div>
+      </div>
+    </footer>
+    <script src="../../../js/mobile-nav.js"></script>
+    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""></noscript>
+  </body>
+</html>
