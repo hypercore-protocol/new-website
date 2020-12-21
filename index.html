@@ -100,18 +100,19 @@
           Using "topic" keys, devices discover each other and arrange a connection through a DHT hole-punching protocol.
         </p>
       </div>
-      <div class="code"><span class="comment">// look for peers listed under this topic</span>
-<span class="keyword">const</span> topic = blake2s(<span class="string">'my-hyperswarm-topic'</span>)
-swarm.join(topic, {lookup: <span class="literal">true</span>, announce: <span class="literal">true</span>})
+      <pre class="language-javascript"><code class="language-javascript"><span class="token comment">// look for peers listed under this topic</span>
+<span class="token keyword">const</span> topic <span class="token operator">=</span> <span class="token function">blake2s</span><span class="token punctuation">(</span><span class="token string">'my-hyperswarm-topic'</span><span class="token punctuation">)</span>
+swarm<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> <span class="token punctuation">{</span>lookup<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> announce<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-swarm.on(<span class="string">'connection'</span>, (socket, details) => {
-  console.log(<span class="string">'new connection!'</span>, details)
+swarm<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'connection'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">socket<span class="token punctuation">,</span> details</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'new connection!'</span><span class="token punctuation">,</span> details<span class="token punctuation">)</span>
 
-  <span class="comment">// you can now use the socket as a stream, eg:</span>
-  process.stdin.pipe(socket).pipe(process.stdout)
-})</div>
+  <span class="token comment">// you can now use the socket as a stream, eg:</span>
+  process<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>socket<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>stdout<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
     </div>
   </section>
+
 
   <section class="code-example">
     <div class="columns">
@@ -122,16 +123,16 @@ swarm.on(<span class="string">'connection'</span>, (socket, details) => {
           They're like light-weight blockchains without the consensus algorithm.
         </p>
       </div>
-      <div class="code"><span class="keyword">const</span> feed = hypercore(<span class="string">'./my-first-hypercore'</span>, {
-  valueEncoding: <span class="string">'utf-8'</span>
-})
+      <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> feed <span class="token operator">=</span> <span class="token function">hypercore</span><span class="token punctuation">(</span><span class="token string">'./my-first-hypercore'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  valueEncoding<span class="token operator">:</span> <span class="token string">'utf-8'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-feed.append(<span class="string">'hello'</span>)
-feed.append(<span class="string">'world'</span>, err => {
-  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err
-  feed.get(<span class="literal">0</span>, console.log) <span class="comment">// prints hello</span>
-  feed.get(<span class="literal">1</span>, console.log) <span class="comment">// prints world</span>
-})</div>
+feed<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'hello'</span><span class="token punctuation">)</span>
+feed<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'world'</span><span class="token punctuation">,</span> <span class="token parameter">err</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">throw</span> err
+  feed<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> console<span class="token punctuation">.</span>log<span class="token punctuation">)</span> <span class="token comment">// prints hello</span>
+  feed<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> console<span class="token punctuation">.</span>log<span class="token punctuation">)</span> <span class="token comment">// prints world</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
     </div>
   </section>
 
@@ -143,17 +144,16 @@ feed.append(<span class="string">'world'</span>, err => {
           Like BitTorrent, as more people "seed" a dataset it will increase the available bandwidth.
         </p>
       </div>
-      <div class="code"><span class="keyword">const</span> drive = hyperdrive(<span class="string">'./my-first-hyperdrive'</span>)
+      <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> drive <span class="token operator">=</span> <span class="token function">hyperdrive</span><span class="token punctuation">(</span><span class="token string">'./my-first-hyperdrive'</span><span class="token punctuation">)</span>
 
-<span class="keyword">await</span> drive.promises.writeFile(<span class="string">'/hello.txt'</span>, <span class="string">'world'</span>)
-<span class="keyword">await</span> drive.promises.readdir(<span class="string">'/'</span>) <span class="comment">// => ['hello.txt']</span>
-<span class="keyword">await</span> drive.promises.readFile(<span class="string">'/hello.txt'</span>) <span class="comment">// => 'world'</span>
+<span class="token keyword">await</span> drive<span class="token punctuation">.</span>promises<span class="token punctuation">.</span><span class="token function">writeFile</span><span class="token punctuation">(</span><span class="token string">'/hello.txt'</span><span class="token punctuation">,</span> <span class="token string">'world'</span><span class="token punctuation">)</span>
+<span class="token keyword">await</span> drive<span class="token punctuation">.</span>promises<span class="token punctuation">.</span><span class="token function">readdir</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span> <span class="token comment">// => ['hello.txt']</span>
+<span class="token keyword">await</span> drive<span class="token punctuation">.</span>promises<span class="token punctuation">.</span><span class="token function">readFile</span><span class="token punctuation">(</span><span class="token string">'/hello.txt'</span><span class="token punctuation">)</span> <span class="token comment">// => 'world'</span>
 
-<span class="comment">// replicate over any stream-based transport layer</span>
-swarm.on(<span class="string">'connection'</span>, (socket, details) => {
-  socket.pipe(drive.replicate()).pipe(socket)
-})</div>
-    </div>
+<span class="token comment">// replicate over any stream-based transport layer</span>
+swarm<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'connection'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">socket<span class="token punctuation">,</span> details</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  socket<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>drive<span class="token punctuation">.</span><span class="token function">replicate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>socket<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
   </section>
 
   <section class="cta">
