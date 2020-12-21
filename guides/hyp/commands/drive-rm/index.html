@@ -133,6 +133,12 @@
   
 
     <li>
+      <a class="" href="../../../../guides/hyp/commands/beam/" title="hyp beam">hyp beam</a>
+      
+    </li>
+  
+
+    <li>
       <a class="" href="../../../../guides/hyp/commands/daemon-status/" title="hyp daemon status">hyp daemon status</a>
       
     </li>
@@ -268,9 +274,14 @@
 
 <p>Remove a file or (if --recursive) a folder at the given hyperdrive URL.</p>
 
-<pre><code>drive rm {url}</code></pre>
+<pre class="usage"><code>hyp drive rm {url}</code></pre>
 
-<p>todo</p>
+<p>Options:</p>
+<ul>
+<li><code>-r/--recursive</code> - If the target is a folder, delete it and all of its contents.</li>
+</ul>
+<p>Examples:</p>
+<pre class="language-bash"><code class="language-bash">hyp drive <span class="token function">rm</span> hyper://1234…af/file.txt<br>hyp drive <span class="token function">rm</span> -r hyper://1234…af/folder/</code></pre>
 
     </div>
   </div>

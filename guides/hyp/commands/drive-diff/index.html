@@ -133,6 +133,12 @@
   
 
     <li>
+      <a class="" href="../../../../guides/hyp/commands/beam/" title="hyp beam">hyp beam</a>
+      
+    </li>
+  
+
+    <li>
       <a class="" href="../../../../guides/hyp/commands/daemon-status/" title="hyp daemon status">hyp daemon status</a>
       
     </li>
@@ -268,9 +274,17 @@
 
 <p>Compare two folders in your local filesystem or in hyperdrives. Can optionally &#34;commit&#34; the difference.</p>
 
-<pre><code>drive diff {source_path_or_url} {target_path_or_url}</code></pre>
+<pre class="usage"><code>hyp drive diff {source_path_or_url} {target_path_or_url}</code></pre>
 
-<p>todo</p>
+<p>Options:</p>
+<ul>
+<li><code>-c/--commit</code> - Write the differences to the target location.</li>
+<li><code>--no-add</code> - Don't include additions to the target location.</li>
+<li><code>--no-overwrite</code> - Don't include overwrites to the target location.</li>
+<li><code>--no-delete</code> - Don't include deletions to the target location.</li>
+</ul>
+<p>Examples:</p>
+<pre class="language-bash"><code class="language-bash">hyp drive <span class="token function">diff</span> hyper://1234…af/ ./local-folder<br>hyp drive <span class="token function">diff</span> ./local-folder hyper://1234…af/remote-folder --no-delete<br>hyp drive <span class="token function">diff</span> hyper://1234…af/ hyper://fedc…21/ --commit</code></pre>
 
     </div>
   </div>

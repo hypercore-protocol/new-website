@@ -133,6 +133,12 @@
   
 
     <li>
+      <a class="" href="../../../../guides/hyp/commands/beam/" title="hyp beam">hyp beam</a>
+      
+    </li>
+  
+
+    <li>
       <a class="" href="../../../../guides/hyp/commands/daemon-status/" title="hyp daemon status">hyp daemon status</a>
       
     </li>
@@ -268,9 +274,10 @@
 
 <p>Set the value of an entry of the given hyperbee URL.</p>
 
-<pre><code>bee put {url} [value]</code></pre>
+<pre class="usage"><code>hyp bee put {url} [value]</code></pre>
 
-<p>todo</p>
+<p>Examples:</p>
+<pre class="language-bash"><code class="language-bash">hyp bee put hyper://1234<span class="token punctuation">..</span>af/foo <span class="token string">"hello"</span><br>hyp bee put hyper://1234<span class="token punctuation">..</span>af/foo/bar <span class="token number">12345</span><br><span class="token function">cat</span> data.json <span class="token operator">|</span> hyp bee put hyper://1234<span class="token punctuation">..</span>af/data</code></pre>
 
     </div>
   </div>

@@ -133,6 +133,12 @@
   
 
     <li>
+      <a class="" href="../../../../guides/hyp/commands/beam/" title="hyp beam">hyp beam</a>
+      
+    </li>
+  
+
+    <li>
       <a class="" href="../../../../guides/hyp/commands/daemon-status/" title="hyp daemon status">hyp daemon status</a>
       
     </li>
@@ -268,9 +274,10 @@
 
 <p>Write a file at the given hyperdrive URL.</p>
 
-<pre><code>drive put {url} [content]</code></pre>
+<pre class="usage"><code>hyp drive put {url} [content]</code></pre>
 
-<p>todo</p>
+<p>Examples:</p>
+<pre class="language-bash"><code class="language-bash">hyp drive put hyper://1234…af/hello.txt <span class="token string">"Hello world!"</span><br><span class="token function">cat</span> package.json <span class="token operator">|</span> hyp drive put hyper://1234…af/package.json<br><span class="token function">cat</span> photo.png <span class="token operator">|</span> hyp drive put hyper://1234…af/photo.png</code></pre>
 
     </div>
   </div>

@@ -133,6 +133,12 @@
   
 
     <li>
+      <a class="" href="../../../../guides/hyp/commands/beam/" title="hyp beam">hyp beam</a>
+      
+    </li>
+  
+
+    <li>
       <a class="" href="../../../../guides/hyp/commands/daemon-status/" title="hyp daemon status">hyp daemon status</a>
       
     </li>
@@ -268,9 +274,16 @@
 
 <p>Show information about one (or more) hypers.</p>
 
-<pre><code>info [urls...]</code></pre>
+<pre class="usage"><code>hyp info [urls...]</code></pre>
 
-<p>todo</p>
+<p>If no URLs are specified, will list all hypers currently seeded.</p>
+<p>Options:</p>
+<ul>
+<li><code>--live</code> - Continuously output the current state.</li>
+<li><code>-l/--long</code> - List the full keys of the hypers.</li>
+</ul>
+<p>Examples:</p>
+<pre class="language-bash"><code class="language-bash">hyp info<br>hyp info --live<br>hyp info hyper://1234…af/<br>hyp info hyper://1234…af/ hyper://fedc…21/</code></pre>
 
     </div>
   </div>

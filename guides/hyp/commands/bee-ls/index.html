@@ -133,6 +133,12 @@
   
 
     <li>
+      <a class="" href="../../../../guides/hyp/commands/beam/" title="hyp beam">hyp beam</a>
+      
+    </li>
+  
+
+    <li>
       <a class="" href="../../../../guides/hyp/commands/daemon-status/" title="hyp daemon status">hyp daemon status</a>
       
     </li>
@@ -268,9 +274,17 @@
 
 <p>List the entries of the given hyperbee URL.</p>
 
-<pre><code>bee ls {url}</code></pre>
+<pre class="usage"><code>hyp bee ls {url}</code></pre>
 
-<p>todo</p>
+<p>Options:</p>
+<ul>
+<li><code>--gt {key}</code> - Filter to items with a key greater than the given value.</li>
+<li><code>--gte {key}</code> - Filter to items with a key greater than or equal to the given value.</li>
+<li><code>--lt {key}</code> - Filter to items with a key less than the given value.</li>
+<li><code>--lte {key}</code> - Filter to items with a key less than or equal to the given value.</li>
+</ul>
+<p>Examples:</p>
+<pre class="language-bash"><code class="language-bash">hyp bee <span class="token function">ls</span> hyper://1234<span class="token punctuation">..</span>af/<br>hyp bee <span class="token function">ls</span> hyper://1234<span class="token punctuation">..</span>af/foo/bar<br>hyp bee <span class="token function">ls</span> hyper://1234<span class="token punctuation">..</span>af/ --gte a --lt m</code></pre>
 
     </div>
   </div>

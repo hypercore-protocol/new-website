@@ -133,6 +133,12 @@
   
 
     <li>
+      <a class="" href="../../../../guides/hyp/commands/beam/" title="hyp beam">hyp beam</a>
+      
+    </li>
+  
+
+    <li>
       <a class="" href="../../../../guides/hyp/commands/daemon-status/" title="hyp daemon status">hyp daemon status</a>
       
     </li>
@@ -268,9 +274,14 @@
 
 <p>Host a hyperdrive as using HTTP on the localhost.</p>
 
-<pre><code>drive http {url}</code></pre>
+<pre class="usage"><code>hyp drive http {url}</code></pre>
 
-<p>todo</p>
+<p>Options:</p>
+<ul>
+<li><code>-p/--port {number}</code> - Choose the port to serve on (default 8080).</li>
+</ul>
+<p>Examples:</p>
+<pre class="language-bash"><code class="language-bash">hyp drive http hyper://1234…af/</code></pre>
 
     </div>
   </div>
