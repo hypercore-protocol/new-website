@@ -64,7 +64,7 @@
   <span>&rsaquo;</span>
     <a href="../../../guides/hyperspace/" title="Hyperspace API">Hyperspace API</a>
   <span>&rsaquo;</span>
-    <a href="../../../guides/hyperspace/corestore/" title="Corestore">Corestore</a>
+    <a href="../../../guides/hyperspace/corestore/" title="RemoteCorestore">RemoteCorestore</a>
   
   </div>
   <div class="guides-layout">
@@ -90,19 +90,19 @@
     <ul>
       
     <li>
-      <a class="current" href="../../../guides/hyperspace/corestore/" title="Corestore">Corestore</a>
+      <a class="current" href="../../../guides/hyperspace/corestore/" title="RemoteCorestore">RemoteCorestore</a>
       
     </li>
   
 
     <li>
-      <a class="" href="../../../guides/hyperspace/networker/" title="Networker">Networker</a>
+      <a class="" href="../../../guides/hyperspace/networker/" title="RemoteNetworker">RemoteNetworker</a>
       
     </li>
   
 
     <li>
-      <a class="" href="../../../guides/hyperspace/hypercore/" title="Hypercore">Hypercore</a>
+      <a class="" href="../../../guides/hyperspace/hypercore/" title="RemoteHypercore">RemoteHypercore</a>
       
     </li>
   
@@ -138,8 +138,22 @@
   
     </nav>
     <div class="guide-content">
-      <p>todo</p>
-
+      <h1>RemoteCorestore</h1>
+<table class="module-table">
+  <tr>
+    <td class="row-name">API&nbsp;Docs</td>
+    <td><a href="https://github.com/hypercore-protocol/hyperspace-client#remote-corestore" class="external">https://github.com/hypercore-protocol/hyperspace-client#remote-corestore</a></td>
+  </tr>
+</table>
+<p>The API for the Hyperspace daemon &quot;corestore.&quot;
+Mirrors the <a href="../../modules/corestore/">corestore</a> module.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> Client<span class="token operator">:</span> HyperspaceClient <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@hyperspace'</span><span class="token punctuation">)</span><br><br><span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HyperspaceClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// connect to the Hyperspace server</span><br><span class="token keyword">const</span> corestore <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">corestore</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// make a corestore</span><br><br><span class="token keyword">const</span> newCore <span class="token operator">=</span> corestore<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// create a new hypercore</span><br><span class="token keyword">const</span> existingCore <span class="token operator">=</span> corestore<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token comment">// get an existing hypercore</span></code></pre>
+<div class="linklists two">
+  <div class="linklist">
+    <h4>Walkthroughs</h4>
+    <a href="../../getting-started/hyperspace/">Getting Started with Hyperspace</a>
+  </div>
+</div>
     </div>
   </div>
 </main>

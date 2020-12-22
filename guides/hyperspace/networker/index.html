@@ -64,7 +64,7 @@
   <span>&rsaquo;</span>
     <a href="../../../guides/hyperspace/" title="Hyperspace API">Hyperspace API</a>
   <span>&rsaquo;</span>
-    <a href="../../../guides/hyperspace/networker/" title="Networker">Networker</a>
+    <a href="../../../guides/hyperspace/networker/" title="RemoteNetworker">RemoteNetworker</a>
   
   </div>
   <div class="guides-layout">
@@ -90,19 +90,19 @@
     <ul>
       
     <li>
-      <a class="" href="../../../guides/hyperspace/corestore/" title="Corestore">Corestore</a>
+      <a class="" href="../../../guides/hyperspace/corestore/" title="RemoteCorestore">RemoteCorestore</a>
       
     </li>
   
 
     <li>
-      <a class="current" href="../../../guides/hyperspace/networker/" title="Networker">Networker</a>
+      <a class="current" href="../../../guides/hyperspace/networker/" title="RemoteNetworker">RemoteNetworker</a>
       
     </li>
   
 
     <li>
-      <a class="" href="../../../guides/hyperspace/hypercore/" title="Hypercore">Hypercore</a>
+      <a class="" href="../../../guides/hyperspace/hypercore/" title="RemoteHypercore">RemoteHypercore</a>
       
     </li>
   
@@ -138,8 +138,21 @@
   
     </nav>
     <div class="guide-content">
-      <p>todo</p>
-
+      <h1>RemoteNetworker</h1>
+<table class="module-table">
+  <tr>
+    <td class="row-name">API&nbsp;Docs</td>
+    <td><a href="https://github.com/hypercore-protocol/hyperspace-client#remote-networker" class="external">https://github.com/hypercore-protocol/hyperspace-client#remote-networker</a></td>
+  </tr>
+</table>
+<p>The API for the Hyperspace daemon &quot;corestore networker.&quot;</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> Client<span class="token operator">:</span> HyperspaceClient <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@hyperspace'</span><span class="token punctuation">)</span><br><br><span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HyperspaceClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// connect to the Hyperspace server</span><br><span class="token keyword">await</span> client<span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// wait for .peers to be populated</span><br><br><span class="token comment">// get current peers</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span>networker<span class="token punctuation">.</span>peers<span class="token punctuation">)</span><br><br><span class="token comment">// log peer events</span><br>client<span class="token punctuation">.</span>networker<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'peer-add'</span><span class="token punctuation">,</span> <span class="token parameter">peer</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'New peer:'</span><span class="token punctuation">,</span> peer<span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><br>client<span class="token punctuation">.</span>networker<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'peer-remove'</span><span class="token punctuation">,</span> <span class="token parameter">peer</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Peer disconnected:'</span><span class="token punctuation">,</span> peer<span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><br><br><span class="token comment">// seed `myHypercore`</span><br><span class="token keyword">await</span> client<span class="token punctuation">.</span>networker<span class="token punctuation">.</span><span class="token function">configure</span><span class="token punctuation">(</span>myHypercore<span class="token punctuation">,</span> <span class="token punctuation">{</span>announce<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> lookup<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><br><span class="token comment">// ...which is equiv to:</span><br><span class="token keyword">await</span> client<span class="token punctuation">.</span><span class="token function">replicate</span><span class="token punctuation">(</span>myHypercore<span class="token punctuation">)</span></code></pre>
+<div class="linklists two">
+  <div class="linklist">
+    <h4>Walkthroughs</h4>
+    <a href="../../getting-started/hyperspace/">Getting Started with Hyperspace</a>
+  </div>
+</div>
     </div>
   </div>
 </main>

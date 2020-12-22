@@ -64,7 +64,7 @@
   <span>&rsaquo;</span>
     <a href="../../../guides/hyperspace/" title="Hyperspace API">Hyperspace API</a>
   <span>&rsaquo;</span>
-    <a href="../../../guides/hyperspace/hypercore/" title="Hypercore">Hypercore</a>
+    <a href="../../../guides/hyperspace/hypercore/" title="RemoteHypercore">RemoteHypercore</a>
   
   </div>
   <div class="guides-layout">
@@ -90,19 +90,19 @@
     <ul>
       
     <li>
-      <a class="" href="../../../guides/hyperspace/corestore/" title="Corestore">Corestore</a>
+      <a class="" href="../../../guides/hyperspace/corestore/" title="RemoteCorestore">RemoteCorestore</a>
       
     </li>
   
 
     <li>
-      <a class="" href="../../../guides/hyperspace/networker/" title="Networker">Networker</a>
+      <a class="" href="../../../guides/hyperspace/networker/" title="RemoteNetworker">RemoteNetworker</a>
       
     </li>
   
 
     <li>
-      <a class="current" href="../../../guides/hyperspace/hypercore/" title="Hypercore">Hypercore</a>
+      <a class="current" href="../../../guides/hyperspace/hypercore/" title="RemoteHypercore">RemoteHypercore</a>
       
     </li>
   
@@ -138,8 +138,23 @@
   
     </nav>
     <div class="guide-content">
-      <p>todo</p>
-
+      <h1>RemoteHypercore</h1>
+<table class="module-table">
+  <tr>
+    <td class="row-name">API&nbsp;Docs</td>
+    <td><a href="https://github.com/hypercore-protocol/hyperspace-client#remote-hypercore" class="external">https://github.com/hypercore-protocol/hyperspace-client#remote-hypercore</a></td>
+  </tr>
+</table>
+<p>The API for Hyperspace daemon hypercores.
+Mirrors the <a href="../../modules/hypercore/">hypercore</a> module.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> Client<span class="token operator">:</span> HyperspaceClient <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@hyperspace'</span><span class="token punctuation">)</span><br><br><span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HyperspaceClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// connect to the Hyperspace server</span><br><br><span class="token comment">// use corestore to instantiate a RemoteHypercore</span><br><span class="token keyword">const</span> core <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">corestore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><br>client<span class="token punctuation">.</span><span class="token function">replicate</span><span class="token punctuation">(</span>core<span class="token punctuation">)</span> <span class="token comment">// also put the core on the network</span><br><br><span class="token keyword">await</span> core<span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// wait for some keys to be populated</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>core<span class="token punctuation">.</span>key<span class="token punctuation">)</span> <span class="token comment">// the core's public key</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>core<span class="token punctuation">.</span>discoveryKey<span class="token punctuation">)</span> <span class="token comment">// the core's discovery key</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>core<span class="token punctuation">.</span>writable<span class="token punctuation">)</span> <span class="token comment">// do we possess the private key?</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>core<span class="token punctuation">.</span>peers<span class="token punctuation">)</span> <span class="token comment">// currently connected peers</span><br><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">await</span> core<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// do we have block 0?</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">await</span> core<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// get block 0</span><br><span class="token keyword">await</span> core<span class="token punctuation">.</span><span class="token function">download</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token comment">// download the first 5 blocks</span><br><span class="token keyword">await</span> core<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Buffer</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// append a new block</span><br><br>core<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'peer-add'</span><span class="token punctuation">,</span> <span class="token parameter">peer</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'new peer'</span><span class="token punctuation">,</span> peer<span class="token punctuation">)</span><span class="token punctuation">)</span><br>core<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'peer-remove'</span><span class="token punctuation">,</span> <span class="token parameter">peer</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'peer disconnected'</span><span class="token punctuation">,</span> peer<span class="token punctuation">)</span><span class="token punctuation">)</span><br>core<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'append'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'new block added'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br>core<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'download'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">seq<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>byteLength<span class="token punctuation">,</span> <span class="token string">'bytes downloaded'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br>core<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'upload'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">seq<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>byteLength<span class="token punctuation">,</span> <span class="token string">'bytes uploaded'</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<div class="linklists two">
+  <div class="linklist">
+    <h4>Walkthroughs</h4>
+    <a href="../../getting-started/hyperspace/">Getting Started with Hyperspace</a>
+    <a href="../../walkthroughs/creating-and-sharing-hypercores/">Creating and Sharing Hypercores</a>
+  </div>
+</div>
     </div>
   </div>
 </main>
