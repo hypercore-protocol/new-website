@@ -170,8 +170,15 @@
     </td>
   </tr>
 </table>
-<p>todo</p>
-
+<p>A Hypercore factory and a set of associated functions for managing generated Hypercores.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> Corestore <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'corestore'</span><span class="token punctuation">)</span><br><span class="token keyword">const</span> ram <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'random-access-memory'</span><span class="token punctuation">)</span><br><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Corestore</span><span class="token punctuation">(</span>ram<span class="token punctuation">)</span><br><span class="token keyword">await</span> store<span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><br><span class="token comment">// create a hypercore</span><br><span class="token keyword">const</span> core1 <span class="token operator">=</span> store<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><br><span class="token comment">// load an existing hypercore</span><br><span class="token keyword">const</span> core2 <span class="token operator">=</span> store<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span> key<span class="token operator">:</span> <span class="token function">Buffer</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>A corestore is designed to efficiently store and replicate multiple sets of interlinked Hypercores, such as those used by <a href="../hyperdrive">Hyperdrive</a> and <a href="https://github.com/andrewosh/hypertrie" class="external">mountable-hypertrie</a>, removing the responsibility of managing custom storage/replication code from these higher-level modules.</p>
+<div class="linklists two">
+  <div class="linklist">
+    <h4>Walkthroughs</h4>
+    <a href="../../getting-started/standalone-modules/">Getting Started with Standalone Modules</a>
+  </div>
+</div>
     </div>
   </div>
 </main>
